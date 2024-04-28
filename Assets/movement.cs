@@ -21,6 +21,10 @@ public class movement : MonoBehaviour
     [SerializeField] private GameObject lose;
     [SerializeField] private GameObject win;
     private bool canFilp ;
+    public AudioSource source;
+    public AudioClip died;
+    public AudioClip endGame;
+    public AudioClip scoreSound;
     void Start()
     {
         scoreAmount = 0;
@@ -77,10 +81,12 @@ public class movement : MonoBehaviour
             backGround.SetActive(true);
             lose.SetActive(true);
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY ;
+            source.PlayOneShot(died);
         }
         else if (collision.gameObject.CompareTag("score"))
         {
             scoreAmount += 1;
+            source.PlayOneShot(scoreSound);
         }
         else if (collision.gameObject.CompareTag("end"))
         {
@@ -88,6 +94,7 @@ public class movement : MonoBehaviour
             backGround.SetActive(true);
             win.SetActive(true);
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY ;
+            source.PlayOneShot(endGame);
         }
     }
    
