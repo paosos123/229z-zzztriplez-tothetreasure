@@ -76,7 +76,6 @@ public class movement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Trap"))
         {
-            Debug.Log("Collided with enemy");
             canFilp = false;
             backGround.SetActive(true);
             lose.SetActive(true);
